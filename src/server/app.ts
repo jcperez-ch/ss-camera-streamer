@@ -15,15 +15,15 @@ const placeholder = '{ src: \'http://www.quebec511.info/diffusion/camera/camera.
 app.use(express.static(path.resolve(__dirname, './build')));
 
 io.on('connection', function(socket) {
-  console.log(`${green('[JC]')} ${yellow('-->')} user ${cyan(socket.client.id)} connected`);
+  console.log(`${green('[SS]')} ${yellow('-->')} user ${cyan(socket.client.id)} connected`);
   socket.on('disconnect', () => {
-    console.log(`${red('[JC]')} ${yellow('-->')} user ${cyan(socket.client.id)} disconnected`);
+    console.log(`${red('[SS]')} ${yellow('-->')} user ${cyan(socket.client.id)} disconnected`);
   });
 });
 
 app.get('*', function(req: Request, res: Response, next) {
   videoId = 3319;
-  console.log(`${yellow('[JC]')} refreshed, back to item ${videoId}`);
+  console.log(`${yellow('[SS]')} refreshed, back to item ${videoId}`);
   res.end(`<html>
     <head>
     <title>:: *7* ::</title>
@@ -44,7 +44,7 @@ app.get('*', function(req: Request, res: Response, next) {
 });
 
 server.listen(port, () => {
-  console.log(`${yellow('[JC]')} started at port ${cyan(port.toString())} in item ${videoId}`);
+  console.log(`${yellow('[SS]')} started at port ${cyan(port.toString())} in item ${videoId}`);
 
   process.stdin.on('data', function(chunk) {
     const chunkStr = chunk.toString('utf-8');
@@ -52,17 +52,17 @@ server.listen(port, () => {
     switch (command) {
       case 'clear':
         io.emit(command);
-        console.log(`${yellow('[JC]')} clearing playlist, next video starts at ${cyan((videoId + 1).toString())}`);
+        console.log(`${yellow('[SS]')} clearing playlist, next video starts at ${cyan((videoId + 1).toString())}`);
         break;
       case 'restart':
         io.emit(command);
-        console.log(`${yellow('[JC]')} restart current playlist`);
+        console.log(`${yellow('[SS]')} restart current playlist`);
         break;
       case 'add':
         io.emit(command, {
           src: `http://www.quebec511.info/diffusion/camera/camera.ashx?format=mp4&id=${++ videoId}`,
         });
-        console.log(`${yellow('[JC]')} Added ${cyan(videoId.toString())} video...`);
+        console.log(`${yellow('[SS]')} Added ${cyan(videoId.toString())} video...`);
         break;
       default:
     }
