@@ -1,6 +1,6 @@
 {
   "name": "react-rollup-typescript-boilerplate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "scripts": {
     "build": "npm-run-all -p build:*",
